@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import './accueil.dart';
+import './j_v.dart';
+import './manga.dart';
+import './favoris.dart';
+import './informations.dart';
+import './film.dart';
 
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  static const String _title = 'Gestion de media';
+  static const String _title = 'Gestion Media';
 
   @override
   Widget build(BuildContext context) {
@@ -25,29 +31,13 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Mangas',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Jeux vidéos',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Films',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 4: Abouts',
-      style: optionStyle,
-    ),
+  static List<Widget> _widgetOptions = <Widget>[
+    Accueil(),
+    j_v(),
+    Manga(),
+    Film(),
+    Favoris(),
+    Info(),
   ];
 
   void _onItemTapped(int index) {
@@ -69,28 +59,33 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: 'Accueil',
             backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.sports_esports),
+            label: 'Jeux-Videos',
             backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.auto_stories),
+            label: 'Mangas',
+            backgroundColor: Colors.blue,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.movie),
+            label: 'Film',
+            backgroundColor: Colors.yellow,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favoris',
+            backgroundColor: Colors.pink,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.help),
+            label: 'Informations',
             backgroundColor: Colors.purple,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-            backgroundColor: Colors.pink,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-            backgroundColor: Colors.pink,
           ),
         ],
         currentIndex: _selectedIndex,
