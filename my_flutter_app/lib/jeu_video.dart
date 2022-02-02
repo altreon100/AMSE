@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import './favoris.dart';
 
 class j_v extends StatelessWidget{
 
@@ -34,7 +34,7 @@ class j_v extends StatelessWidget{
         final item=items[index];
         final description=descriptions[index];
         return Container(height: 200, child:ListTile(
-          leading:Icon(Icons.favorite),
+          leading:ButtonFav(),
           title:Text(item,style: TextStyle(fontSize: 40.0),),
           subtitle:Text(description,style: TextStyle(fontSize: 24.0),),
           dense:true,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './accueil.dart';
-import './j_v.dart';
+import './jeu_video.dart';
 import './manga.dart';
 import './favoris.dart';
 import './informations.dart';
