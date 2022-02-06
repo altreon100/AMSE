@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import './favoris.dart';
 
-class j_v extends StatelessWidget{
-
-  List<String> items= [
+class jeu_video extends StatelessWidget
+{
+  List<String> items= 
+  [
      'Final Fantasy XIV',
      'Total War: Three Kingdoms',
      'The Witcher',
@@ -12,7 +13,8 @@ class j_v extends StatelessWidget{
      'Mount & Blade',
   ];
 
-  List<String> descriptions= [
+  List<String> descriptions= 
+  [
      "Final Fantasy XIV met en scène le monde d'Hydaelyn, et plus précisément la région d'Éorzéa. Cette dernière abrite plusieurs cités-États qui maintiennent des relations plus ou moins ambigües : unies dans une même croyance religieuse, certaines sont parfois en conflit. Le jeu prend place alors qu'un empire conquérant menace Éorzéa et compte bien profiter des dissensions entre les cités.",
      "Le jeu commence en 190 après JC au cours duquel la dynastie des Han, autrefois glorieuse, est sur le point de s'effondrer. Le nouvel empereur Han Xiandi, intronisé à l'âge de huit ans, a été manipulé par le premier ministre et seigneur de guerre Dong Zhuo, dont le règne oppressif mène au chaos. De nouveaux chefs de guerre se lèvent et forment des alliances pour lancer une campagne à son égard. Chaque chef de guerre ayant des ambitions personnelles et des allégeances en constante évolution, les champions issus des guerres qui se prolongent façonneront l’avenir de la Chine.",
      "Geralt, devenu amnésique, est ramené à Kaer Morhen, la forteresse ancestrale des Sorceleurs, maintenant en ruine et presque vide, car les Sorceleurs ont été presque tous tués lors d'un pogrom ayant eu lieu des années auparavant. Bientôt, ceux-ci sont attaqués par un groupe inconnu mais important. Ses membres présentent deux particularités : d'abord, ils portent des broches sur lesquelles figurent une salamandre. Ensuite, ils semblent beaucoup s'intéresser au laboratoire de la forteresse, lieu où sont entreposés et fabriqués les précieux mutagènes qui confèrent aux Sorceleurs leurs incroyables capacités.Qui étaient ces assaillants ? D'où venaient-ils ? Qui les a envoyés ? Autant de questions auxquelles Geralt devra tenter de répondre.",
@@ -22,19 +24,33 @@ class j_v extends StatelessWidget{
 
   ];
   @override
-    Widget build(BuildContext context)=>Scaffold(
+    Widget build(BuildContext context)=>Scaffold
+    (
       body:buildList(),
-      );
+    );
 
-    Widget buildList()=>ListView.builder(
-      
+    Widget buildList()=>ListView.builder
+    (
       itemCount: items.length,
       itemExtent:250,
-      itemBuilder:(context,index){
+      itemBuilder:(context,index)
+      {
         final item=items[index];
         final description=descriptions[index];
-        return Container(height: 200, child:ListTile(
-          leading:ButtonFav(),
+        return Container(height: 200, child:ListTile
+        (
+          leading: ConstrainedBox
+          (
+            constraints: BoxConstraints
+            (
+              minWidth: 60,
+              minHeight: 60,
+              maxWidth: 250,
+              maxHeight: 250,
+            ),
+          child: Image.asset('images3/$index.jpg', fit: BoxFit.cover),
+          ),
+          trailing:Favoris((index+14)),
           title:Text(item,style: TextStyle(fontSize: 40.0),),
           subtitle:Text(description,style: TextStyle(fontSize: 24.0),),
           dense:true,

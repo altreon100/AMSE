@@ -1,41 +1,60 @@
 import 'package:flutter/material.dart';
 
+var etat_Fav = List.filled(20,false);
 
-class Favoris extends StatelessWidget{
-  const Favoris({Key? key}) : super(key: key);
+class Favoris extends StatefulWidget
+{
+  const Favoris(this.media, {Key? key}) : super(key: key);
+  final int media;
   @override
-    Widget build(BuildContext context){
-      return Container(
-      margin: const EdgeInsets.all(10.0),
-      color: Colors.amber[600],
-      width: 48.0,
-      height: 48.0,
-    );
+  Fav_Button createState() => Fav_Button(media);
+}
+
+
+class Fav_Button extends State<Favoris> 
+{
+  Fav_Button(this.media);
+  var couleur;
+  final media;
+  @override
+  void initState() 
+  {
+    super.initState();
+    if (etat_Fav[media] == true) 
+    {
+      couleur = Colors.red;
+    } 
+    else 
+    {
+      couleur = Colors.grey;
     }
-}
-
-class ButtonFav extends StatefulWidget {
-  const ButtonFav({Key? key}) : super(key: key);
+  }
+ 
   @override
-  _ButtonFavState createState() => _ButtonFavState();
-}
-
-class _ButtonFavState extends State<ButtonFav> {
-  var couleur=Colors.grey;
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(
+  Widget build(BuildContext context) 
+  {
+    return IconButton
+    (
+      icon: Icon
+      (
         Icons.favorite,
         size: 20,
       color: couleur,
       ),
-      tooltip: "Favoris",
-      onPressed: () {
-        setState(() {
-          if (couleur == Colors.grey) {
+      onPressed: () 
+      {
+        setState(() 
+        {
+          if (couleur == Colors.grey) 
+          {
             couleur = Colors.red;
+            etat_Fav[media]=true;
           } 
+          else 
+          {
+            couleur = Colors.grey;
+            etat_Fav[media] = false;
+          }
         });
       },
     );

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import './favoris.dart';
 
-class Film extends StatelessWidget{
-  List<String> items= [
+class Film extends StatelessWidget
+{
+  List<String> items= 
+  [
      'Seigneur des anneaux',
      'Le Labyrinthe',
      'Titanic',
@@ -12,7 +14,8 @@ class Film extends StatelessWidget{
      'Jurassic Park',
   ];
 
-  List<String> descriptions= [
+  List<String> descriptions= 
+  [
      "Le jeune et timide Hobbit, Frodon Sacquet, hérite d'un anneau. Bien loin d'être une simple babiole, il s'agit de l'Anneau Unique, un instrument de pouvoir absolu qui permettrait à Sauron, le Seigneur des ténèbres, de régner sur la Terre du Milieu et de réduire en esclavage ses peuples. À moins que Frodon, aidé d'une Compagnie constituée de Hobbits, d'Hommes, d'un Magicien, d'un Nain, et d'un Elfe, ne parvienne à emporter l'Anneau à travers la Terre du Milieu jusqu'à la Crevasse du Destin, lieu où il a été forgé.",
      "Quand Thomas reprend connaissance, il est pris au piège avec un groupe d’autres garçons dans un labyrinthe géant dont le plan est modifié chaque nuit. Il n’a plus aucun souvenir du monde extérieur, à part d’étranges rêves à propos d’une mystérieuse organisation appelée W.C.K.D. En reliant certains fragments de son passé, avec des indices qu’il découvre au sein du labyrinthe, Thomas espère trouver un moyen de s’en échapper.",
      "Southampton, 10 avril 1912. Le paquebot le plus grand et le plus moderne du monde, réputé pour son insubmersibilité, le 'Titanic', appareille pour son premier voyage. Quatre jours plus tard, il heurte un iceberg. A son bord, un artiste pauvre et une grande bourgeoise tombent amoureux.",
@@ -23,19 +26,33 @@ class Film extends StatelessWidget{
 
   ];
   @override
-    Widget build(BuildContext context)=>Scaffold(
+    Widget build(BuildContext context)=>Scaffold
+    (
       body:buildList(),
-      );
+    );
 
-    Widget buildList()=>ListView.builder(
-      
+    Widget buildList()=>ListView.builder
+    (
       itemCount: items.length,
       itemExtent:250,
-      itemBuilder:(context,index){
+      itemBuilder:(context,index)
+      {
         final item=items[index];
         final description=descriptions[index];
-        return Container(height: 200, child:ListTile(
-          leading:ButtonFav(),
+        return Container(height: 200, child:ListTile
+        (
+          leading: ConstrainedBox
+          (
+            constraints: BoxConstraints
+            (
+              minWidth: 60,
+              minHeight: 60,
+              maxWidth: 250,
+              maxHeight: 250,
+            ),
+          child: Image.asset('images2/$index.jpg', fit: BoxFit.cover),
+          ),
+          trailing:Favoris((index+7)),
           title:Text(item,style: TextStyle(fontSize: 40.0),),
           subtitle:Text(description,style: TextStyle(fontSize: 24.0),),
           dense:true,

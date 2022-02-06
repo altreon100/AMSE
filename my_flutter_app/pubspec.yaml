@@ -70,6 +70,19 @@ flutter:
   - images/4.jpg
   - images/5.jpg
   - images/6.jpg
+  - images2/0.jpg
+  - images2/1.jpg
+  - images2/2.jpg
+  - images2/3.jpg
+  - images2/4.jpg
+  - images2/5.jpg
+  - images2/6.jpg
+  - images3/0.jpg
+  - images3/1.jpg
+  - images3/2.jpg
+  - images3/3.jpg
+  - images3/4.jpg
+  - images3/5.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
