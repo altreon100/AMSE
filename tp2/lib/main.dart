@@ -3,6 +3,7 @@ import './Exercice4.dart';
 import './Exercice5a.dart';
 import './Exercice5b.dart';
 import './Exercice5c.dart';
+import './Exercice6a.dart';
 
 void main() => runApp(MyApp());
 
@@ -105,6 +106,14 @@ class MyStatelessWidget extends StatelessWidget {
             title: Text('Exercice 6a'),
             subtitle: Text('Moving Tiles'),
             trailing: Icon(Icons.play_arrow),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Exercise6a(),
+                ),
+              );
+            },
           ),
         ),
         Card(
