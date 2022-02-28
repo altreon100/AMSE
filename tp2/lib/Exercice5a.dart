@@ -12,10 +12,10 @@ class Exercise5aState extends State<Exercise5a> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(10),
         child: GridView.count(
           primary: false,
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(10),
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           crossAxisCount: 3,

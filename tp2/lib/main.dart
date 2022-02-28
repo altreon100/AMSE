@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './Exercice4.dart';
 import './Exercice5a.dart';
 import './Exercice5b.dart';
+import './Exercice5c.dart';
 
 void main() => runApp(MyApp());
 
@@ -89,6 +90,14 @@ class MyStatelessWidget extends StatelessWidget {
             title: Text('Exercice 5c'),
             subtitle: Text('Configurable Taquin Board'),
             trailing: Icon(Icons.play_arrow),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Exercise5c(),
+                ),
+              );
+            },
           ),
         ),
         Card(
