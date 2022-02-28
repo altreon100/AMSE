@@ -1,139 +1,118 @@
 import 'package:flutter/material.dart';
-List<double> val_slider=[0,0,100];
-void main() {
-  runApp(const MyApp());
-}
+import './Exercice4.dart';
+import './Exercice5a.dart';
+import './Exercice5b.dart';
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  static const String _title = 'Flutter Code Sample';
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: _title,
       home: Scaffold(
-        body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const image(),
-              Row(children: <Widget>[
-                const Text(
-                  '   RotateX:',
-                ),
-                Expanded(
-                  child: const MyStatefulWidget(0),
-                )
-              ]),
-              Row(children: <Widget>[
-                const Text(
-                  '   RotateZ:',
-                ),
-                Expanded(
-                  child: const MyStatefulWidget(1),
-                )
-              ]),
-              Row(children: <Widget>[
-                const Text(
-                  '  Mirror:',
-                ),
-                button(),
-              ]),
-              Row(children: <Widget>[
-                const Text(
-                  '  Scale:',
-                ),
-                Expanded(
-                  child: const MyStatefulWidget(2),
-                )
-              ]),
-            ]),
+        appBar: AppBar(title: const Text(_title)),
+        body: MyStatelessWidget(),
       ),
     );
   }
 }
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget(this.indice,{Key? key}) : super(key: key);
-  final int indice;
-  @override
-
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState(indice);
-}
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  _MyStatefulWidgetState(this.indice);
-  final indice;
-  var valeur;
-
-  @override
-  void initState(){
-    super.initState();
-    valeur=val_slider[indice];
-  }
-
-
+class MyStatelessWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Slider(
-      value: valeur,
-      max: 100,
-      divisions: 5,
-      label: valeur.round().toString(),
-      onChanged: (double value) {
-        setState(() {
-          valeur = value;
-        });
-        val_slider[indice]=valeur;
-      },
-      
-    );
-  }
-}
-
-class button extends StatefulWidget {
-  const button({Key? key}) : super(key: key);
-
-  @override
-  _buttonState createState() => _buttonState();
-}
-
-class _buttonState extends State<button> {
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        setState(() {});
-      },
-      icon: const Icon(Icons.crop_square),
-    );
-  }
-}
-
-class image extends StatefulWidget {
-  const image({Key? key}) : super(key: key);
-
-  @override
-  _imageState createState() => _imageState();
-}
-
-class _imageState extends State<image> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Transform(
-        transform: Matrix4.rotationZ(3.14 / 9),
-        child: Transform.rotate(
-          angle: val_slider[0]*360/100,
-          child: Transform.scale(
-            scale: val_slider[2]/100,
-            child: Image.network(
-              'https://picsum.photos/512/1024',
-              width: 300,
-              height: 500,
-            ),
+    return ListView(
+      children: <Widget>[
+        Card(
+          child: ListTile(
+            title: Text('Exercice 2'),
+            subtitle: Text('Rotate&Scale Image'),
+            trailing: Icon(Icons.play_arrow),
           ),
         ),
-      ),
+        Card(
+          child: ListTile(
+            title: Text('Exercice 2b'),
+            subtitle: Text('Animated Rotate&Scale Image'),
+            trailing: Icon(Icons.play_arrow),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: Text('Exercice 4'),
+            subtitle: Text('Display a tile'),
+            trailing: Icon(Icons.play_arrow),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Exercise4(),
+                ),
+              );
+            },
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: Text('Exercice 5a'),
+            subtitle: Text('Grid of Colored Boxes'),
+            trailing: Icon(Icons.play_arrow),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Exercise5a(),
+                ),
+              );
+            },
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: Text('Exercice 5b'),
+            subtitle: Text('Fixed Grid of CroppedImage'),
+            trailing: Icon(Icons.play_arrow),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Exercise5b(),
+                ),
+              );
+            },
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: Text('Exercice 5c'),
+            subtitle: Text('Configurable Taquin Board'),
+            trailing: Icon(Icons.play_arrow),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: Text('Exercice 6a'),
+            subtitle: Text('Moving Tiles'),
+            trailing: Icon(Icons.play_arrow),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: Text('Exercice 6b'),
+            subtitle: Text('Moving Tiles in Grid'),
+            trailing: Icon(Icons.play_arrow),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: Text('Exercice 7'),
+            subtitle: Text('Taquin Game'),
+            trailing: Icon(Icons.play_arrow),
+          ),
+        ),
+      ],
     );
   }
 }
