@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import './Exercice2a.dart';
+import './Exercice2b.dart';
 import './Exercice4.dart';
 import './Exercice5a.dart';
 import './Exercice5b.dart';
 import './Exercice5c.dart';
 import './Exercice6a.dart';
+import './Exercice6b.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  static const String _title = 'Flutter Code Sample';
+  static const String _title = 'Projet2: jeu de Taquin';
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +32,17 @@ class MyStatelessWidget extends StatelessWidget {
       children: <Widget>[
         Card(
           child: ListTile(
-            title: Text('Exercice 2'),
+            title: Text('Exercice 2a'),
             subtitle: Text('Rotate&Scale Image'),
             trailing: Icon(Icons.play_arrow),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Exercice2a(),
+                ),
+              );
+            },
           ),
         ),
         Card(
@@ -39,6 +50,14 @@ class MyStatelessWidget extends StatelessWidget {
             title: Text('Exercice 2b'),
             subtitle: Text('Animated Rotate&Scale Image'),
             trailing: Icon(Icons.play_arrow),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Exercice2b(),
+                ),
+              );
+            },
           ),
         ),
         Card(
@@ -50,7 +69,7 @@ class MyStatelessWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Exercise4(),
+                  builder: (context) => Exercice4(),
                 ),
               );
             },
@@ -65,7 +84,7 @@ class MyStatelessWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Exercise5a(),
+                  builder: (context) => Exercice5a(),
                 ),
               );
             },
@@ -80,7 +99,7 @@ class MyStatelessWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Exercise5b(),
+                  builder: (context) => Exercice5b(),
                 ),
               );
             },
@@ -95,7 +114,7 @@ class MyStatelessWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Exercise5c(),
+                  builder: (context) => Exercice5c(),
                 ),
               );
             },
@@ -110,7 +129,7 @@ class MyStatelessWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Exercise6a(),
+                  builder: (context) => Exercice6a(),
                 ),
               );
             },
@@ -121,6 +140,14 @@ class MyStatelessWidget extends StatelessWidget {
             title: Text('Exercice 6b'),
             subtitle: Text('Moving Tiles in Grid'),
             trailing: Icon(Icons.play_arrow),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Exercice6b(),
+                ),
+              );
+            },
           ),
         ),
         Card(

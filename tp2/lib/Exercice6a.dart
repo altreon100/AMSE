@@ -39,12 +39,12 @@ class TileWidget extends StatelessWidget {
   }
 }
 
-class Exercise6a extends StatefulWidget {
+class Exercice6a extends StatefulWidget {
   @override
-  State<Exercise6a> createState() => Exercise6aState();
+  State<Exercice6a> createState() => Exercice6aState();
 }
 
-class Exercise6aState extends State<Exercise6a> {
+class Exercice6aState extends State<Exercice6a> {
   List<Widget> tiles = List<Widget>.generate(
       2,
       (index) => TileWidget(

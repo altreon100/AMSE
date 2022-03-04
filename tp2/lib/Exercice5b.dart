@@ -29,15 +29,15 @@ class Tile extends StatelessWidget {
   }
 }
 
-class Exercise5b extends StatefulWidget {
-  const Exercise5b({
+class Exercice5b extends StatefulWidget {
+  const Exercice5b({
     Key? key,
   }) : super(key: key);
   @override
-  State<Exercise5b> createState() => Exercise5bState();
+  State<Exercice5b> createState() => Exercice5bState();
 }
 
-class Exercise5bState extends State<Exercise5b> {
+class Exercice5bState extends State<Exercice5b> {
   List<Tile> tiles = [];
 
   @override
@@ -56,7 +56,8 @@ class Exercise5bState extends State<Exercise5b> {
           mainAxisSpacing: 5,
           crossAxisCount: 3,
           children: [
-            createTileWidgetFrom(tiles[0]),
+            createTileWidgetFrom(
+                tiles[0]), // appel de la fonction afin de créer les tiles
             createTileWidgetFrom(tiles[1]),
             createTileWidgetFrom(tiles[2]),
             createTileWidgetFrom(tiles[3]),
@@ -72,6 +73,7 @@ class Exercise5bState extends State<Exercise5b> {
   }
 
   void createTiles() {
+    // fonction qui créer des tiles de manière itératif 9 tiles seront crées avec le bon alignement
     tiles = [];
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {

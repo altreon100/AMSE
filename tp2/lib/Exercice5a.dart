@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
 
-class Exercise5a extends StatefulWidget {
-  const Exercise5a({
+class Exercice5a extends StatefulWidget {
+  const Exercice5a({
     Key? key,
   }) : super(key: key);
   @override
-  State<Exercise5a> createState() => Exercise5aState();
+  State<Exercice5a> createState() => Exercice5aState();
 }
 
-class Exercise5aState extends State<Exercise5a> {
+class Exercice5aState extends State<Exercice5a> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.all(10),
-        child: GridView.count(
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Grid of Colored Boxes"),
+          centerTitle: true,
+        ),
+        body: Center(
+            child: GridView.count(
+          //Creation de la grille
           primary: false,
           padding: const EdgeInsets.all(10),
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           crossAxisCount: 3,
           children: <Widget>[
+            //Creation de la liste de container avec l'apparition du texte "title $index"
             Container(
               child: Center(
                 child: const Text(
@@ -111,6 +117,6 @@ class Exercise5aState extends State<Exercise5a> {
               color: Colors.teal[600],
             ),
           ],
-        ));
+        )));
   }
 }

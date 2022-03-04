@@ -22,15 +22,15 @@ class Tile {
   }
 }
 
-class Exercise4 extends StatefulWidget {
-  const Exercise4({
+class Exercice4 extends StatefulWidget {
+  const Exercice4({
     Key? key,
   }) : super(key: key);
   @override
-  State<Exercise4> createState() => DisplayTileWidget();
+  State<Exercice4> createState() => DisplayTileWidget();
 }
 
-class DisplayTileWidget extends State<Exercise4> {
+class DisplayTileWidget extends State<Exercice4> {
   Tile tile = new Tile(
     image: 'https://picsum.photos/512',
     alignment: Alignment(0, 0),
@@ -39,7 +39,7 @@ class DisplayTileWidget extends State<Exercise4> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Display a Tile as a Cropped Image'),
+        title: Text('Display a Tile '),
         centerTitle: true,
       ),
       body: Center(
