@@ -7,6 +7,7 @@ import './Exercice5b.dart';
 import './Exercice5c.dart';
 import './Exercice6a.dart';
 import './Exercice6b.dart';
+import './Exercice7.dart';
 
 void main() => runApp(MyApp());
 
@@ -155,6 +156,14 @@ class MyStatelessWidget extends StatelessWidget {
             title: Text('Exercice 7'),
             subtitle: Text('Taquin Game'),
             trailing: Icon(Icons.play_arrow),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Exercice7(),
+                ),
+              );
+            },
           ),
         ),
       ],

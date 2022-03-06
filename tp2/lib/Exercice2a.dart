@@ -10,6 +10,7 @@ class Exercice2a extends StatefulWidget {
 }
 
 class Exercice2aState extends State<Exercice2a> {
+  //initialisation des marqueurs
   double ValeurZ = 0;
   double ValeurX = 0;
   double Scale = 100;
@@ -28,6 +29,7 @@ class Exercice2aState extends State<Exercice2a> {
                 child: Column(children: <Widget>[
           Expanded(
             child: Container(
+              // appel des widget transform pour faire respectivement la rotation selon Z,selon X,la taille et l'effet mirroir
               child: Transform(
                 alignment: Alignment.center,
                 transform: Matrix4.skewY(0)..rotateZ(-ValeurZ * math.pi / 24.0),
@@ -48,6 +50,7 @@ class Exercice2aState extends State<Exercice2a> {
               ),
             ),
           ),
+          // création des sliders
           Row(children: <Widget>[
             const Text(
               '   RotateZ:',
@@ -116,9 +119,10 @@ class Exercice2aState extends State<Exercice2a> {
                   });
                 }
               },
-              icon: (ispressed)
-                  ? Icon(Icons.check_circle)
-                  : Icon(Icons.crop_square),
+              icon:
+                  (ispressed) // on change l'icon en fonction si le bouton est appuyé ou non
+                      ? Icon(Icons.check_circle)
+                      : Icon(Icons.crop_square),
             ))
           ]),
         ]))));

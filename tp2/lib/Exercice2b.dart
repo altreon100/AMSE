@@ -11,17 +11,34 @@ class Exercice2b extends StatefulWidget {
 
 class Exercice2bState extends State<Exercice2b>
     with SingleTickerProviderStateMixin {
+  //initialisation des slider
   double ValeurZ = 0;
   double ValeurX = 0;
   double Scale = 100;
   int pressed = 0;
   bool ispressed = false;
   late AnimationController controller;
+  late Animation<double> animator;
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1000), value: 0);
+
+    controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 5));
+    animator = Tween<double>(begin: 0.0, end: 10).animate(controller);
+
+    controller.addStatusListener((status) async {
+      if (status == AnimationStatus.completed) {
+        await Future.delayed(Duration(seconds: 1));
+        controller.reset();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -34,44 +51,72 @@ class Exercice2bState extends State<Exercice2b>
         body: Center(
             child: Container(
                 child: Column(children: <Widget>[
+          // RotationTransition(
+          //   turns: Tween(begin: 0.0, end: 10.0).animate(controller),
+          //   child: Image.network('https://picsum.photos/512'),
+          // ),
+
           AnimatedBuilder(
-              animation: controller,
-              child: Image.network('https://picsum.photos/512'),
-              builder: (context, child) {
-                return Expanded(
-                  child: Container(
-                    child: Transform(
+            animation: controller,
+
+            child: Image.network('https://picsum.photos/512'),
+            builder: (context, child)
+                // => Transform.rotate(
+                //   angle: animator.value,
+                =>
+                Expanded(
+              child: Container(
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.skewY(0)
+                    ..rotateZ((controller.value) * math.pi / 24.0),
+                  child: Transform(
                       alignment: Alignment.center,
                       transform: Matrix4.skewY(0)
-                        ..rotateZ((controller.value) * math.pi / 24.0),
+                        ..rotateX((controller.value) * math.pi / 24.0),
                       child: Transform(
                         alignment: Alignment.center,
-                        transform: Matrix4.skewY(0)
-                          ..rotateX((controller.value) * math.pi / 24.0),
-                        child: Transform(
-                          alignment: Alignment.center,
-                          transform: Matrix4.skewX(0)
-                            ..scale((controller.value) / 100),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              }),
+                        transform: Matrix4.skewY(controller.value * 0.6),
+                        child: child,
+                      )),
+                ),
+              ),
+            ),
+
+            //     {
+            //   return Expanded(
+            //       child: Container(
+            //     child: Transform(
+            //       alignment: Alignment.center,
+            //       transform: Matrix4.skewY(0)
+            //         ..rotateZ((controller.value) * math.pi / 24.0),
+            //       child: Transform(
+            //         alignment: Alignment.center,
+            //         transform: Matrix4.skewY(0)
+            //           ..rotateX((controller.value) * math.pi / 24.0),
+            //         child: Transform(
+            //           alignment: Alignment.center,
+            //           transform: Matrix4.skewX(0)
+            //             ..scale((controller.value) / 100),
+            //           child: child,
+            //         ),
+            //       ),
+            //     ),
+            //   ));
+            // }
+          ),
           Row(children: <Widget>[
             const Text(
               '   RotateZ:',
             ),
             Expanded(
                 child: Slider(
-                    value: ValeurZ,
+                    value: controller.value,
                     max: 100,
                     divisions: 100,
-                    label: ValeurZ.round().toString(),
+                    label: controller.value.round().toString(),
                     onChanged: (double value) {
-                      setState(() {
-                        ValeurZ = value;
-                      });
+                      setState(() {});
                     }))
           ]),
           Row(children: <Widget>[
@@ -80,14 +125,12 @@ class Exercice2bState extends State<Exercice2b>
             ),
             Expanded(
                 child: Slider(
-                    value: ValeurX,
+                    value: controller.value,
                     max: 100,
                     divisions: 100,
-                    label: ValeurX.round().toString(),
+                    label: controller.value.round().toString(),
                     onChanged: (double value) {
-                      setState(() {
-                        ValeurX = value;
-                      });
+                      setState(() {});
                     }))
           ]),
           Row(children: <Widget>[
@@ -112,11 +155,9 @@ class Exercice2bState extends State<Exercice2b>
             ),
             Expanded(
               child: IconButton(
-                onPressed: () async {
+                onPressed: () {
                   // Flip the image
-                  await controller.forward();
-                  setState(() => ispressed = !ispressed);
-                  await controller.reverse();
+                  controller.forward(from: 0.0);
                 },
                 icon: Icon(Icons.crop_square),
               ),
