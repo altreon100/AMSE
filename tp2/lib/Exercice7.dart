@@ -3,50 +3,6 @@ import 'dart:math' as math;
 
 math.Random random = new math.Random();
 
-class Tile {
-  String image;
-  Alignment alignment;
-  double zoom;
-  String typeTile;
-  Tile(this.image, this.alignment, this.zoom, this.typeTile);
-}
-
-class TileWidget extends StatelessWidget {
-  final Tile tile;
-  TileWidget(this.tile);
-
-  @override
-  Widget build(BuildContext context) {
-    if (tile.typeTile == "Empty") {
-      // Si la tuile est de type Empty alors on crée une tuile blanche avec écrit "Empty"
-      return TileEmpty(tile);
-    } else {
-      // Si la tuile est de type Normal ou SwapTiles alors on crée une tuile de couleur aléatoire avec écrit "Tile" et son numéro
-      return Tile_Normal(tile);
-    }
-  }
-
-  Widget TileEmpty(Tile tile) {
-    // création d'une tuile de type Empty
-    return Container();
-  }
-
-  Widget Tile_Normal(Tile tile) {
-    // création d'un tuile de type Normal ou SwapTiles
-    return FittedBox(
-      fit: BoxFit.fill,
-      child: ClipRect(
-        child: Align(
-          alignment: tile.alignment,
-          widthFactor: tile.zoom,
-          heightFactor: tile.zoom,
-          child: Image.network(tile.image),
-        ),
-      ),
-    );
-  }
-}
-
 class Exercice7 extends StatefulWidget {
   const Exercice7({
     Key? key,
@@ -124,7 +80,8 @@ class Exercice7State extends State<Exercice7> {
       actions: <Widget>[
         FlatButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.of(context)
+                .pop(); // permet de revenir à la page précédente
           },
           child: const Text('Retour au menu'),
         ),
@@ -147,7 +104,7 @@ class Exercice7State extends State<Exercice7> {
       }
     }
     for (int k = 0; k < nbDecoupage * nbDecoupage; k++) {
-      // dans tous les autres cas on regarde si l'indice de la tuile est celui de la tuile vide auquel cas on met son type a Empty
+      //  on regarde si l'indice de la tuile est celui de la tuile vide auquel cas on met son type a Empty
       //Si elle peut être échanger avec la tuile Empty on met son type a SwapTiles et sinon son type est Normal
       if (k == indexTileEmpty) {
         if (!isLaunch) {
@@ -173,13 +130,6 @@ class Exercice7State extends State<Exercice7> {
       indexTileEmpty = i;
       CompteurCoup++;
     }
-  }
-
-  void swapTiles2(int i, int j) {
-    //fonction qui permet d'échanger 2 tuiles
-    Tile swapTiles = tiles[j];
-    tiles[j] = tiles[i];
-    tiles[i] = swapTiles;
   }
 
   bool canSwitch(int i) {
@@ -245,6 +195,7 @@ class Exercice7State extends State<Exercice7> {
   }
 
   void Back() {
+    // fonction qui permet de revenir 1 coup en arrière
     Tile echange = tiles[indexTileEmpty];
     tiles[indexTileEmpty] = tiles[indexPrev];
     tiles[indexPrev] = echange;
@@ -336,6 +287,7 @@ class Exercice7State extends State<Exercice7> {
                       onPressed: () {
                         setState(() {
                           if (CompteurCoup != 0) {
+                            // On ne peut pas l'utliser au premier coup
                             Back();
                           }
                           createTiles();
@@ -350,6 +302,7 @@ class Exercice7State extends State<Exercice7> {
                         child: FloatingActionButton.extended(
                       onPressed: () {
                         setState(() {
+                          // On remet toute les constantes à 0 afin de revenir au menu
                           tiles.clear();
                           indexTileEmpty = nbDecoupage;
                           CompteurCoup = 0;
@@ -363,5 +316,49 @@ class Exercice7State extends State<Exercice7> {
                   if (isLaunch)
                     Container(child: Text("    Nombre de coup: $CompteurCoup"))
                 ])));
+  }
+}
+
+class Tile {
+  String image;
+  Alignment alignment;
+  double zoom;
+  String typeTile;
+  Tile(this.image, this.alignment, this.zoom, this.typeTile);
+}
+
+class TileWidget extends StatelessWidget {
+  final Tile tile;
+  TileWidget(this.tile);
+
+  @override
+  Widget build(BuildContext context) {
+    if (tile.typeTile == "Empty") {
+      // Si la tuile est de type Empty alors on crée une tuile blanche avec écrit "Empty"
+      return TileEmpty(tile);
+    } else {
+      // Si la tuile est de type Normal ou SwapTiles alors on crée une tuile de couleur aléatoire avec écrit "Tile" et son numéro
+      return Tile_Normal(tile);
+    }
+  }
+
+  Widget TileEmpty(Tile tile) {
+    // création d'une tuile de type Empty
+    return Container();
+  }
+
+  Widget Tile_Normal(Tile tile) {
+    // création d'un tuile de type Normal ou SwapTiles
+    return FittedBox(
+      fit: BoxFit.fill,
+      child: ClipRect(
+        child: Align(
+          alignment: tile.alignment,
+          widthFactor: tile.zoom,
+          heightFactor: tile.zoom,
+          child: Image.network(tile.image),
+        ),
+      ),
+    );
   }
 }
