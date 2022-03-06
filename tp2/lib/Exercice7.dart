@@ -112,11 +112,13 @@ class Exercice7State extends State<Exercice7> {
 
   Widget AfficheVictoire(BuildContext context) {
     // Permet l'affichage de la boîte de dialogue pour la victoire
-    return new AlertDialog(
+    return AlertDialog(
       title: const Text('Partie Gagnée'),
-      content: new Column(
+      content: Column(
         children: <Widget>[
-          Text("Bravo, vous avez gagné la partie "),
+          Text("Bravo!  Tu as gagné la partie en $CompteurCoup coup"),
+          Image.network(
+              'https://chaponnaygym.sportsregions.fr/media/uploaded/sites/1126/actualite/crop_53a2cbbf19773_homersimpsonsvictoire.jpg'),
         ],
       ),
       actions: <Widget>[
@@ -212,19 +214,34 @@ class Exercice7State extends State<Exercice7> {
     return true;
   }
 
-  void Melange() {
+  void EasyMelange() {
     // fonction qui permet de mélanger aléatoirement des tuiles du jeu
     createTiles();
     int nbRand1 = 0;
-    int nbRand2 = 0;
+
     for (int i = 0; i < nbDecoupage; i++) {
       // on prend 2 nombres aléatoires qui correspondent aux indices de tuiles et on les échanges
       nbRand1 = random.nextInt(nbDecoupage * nbDecoupage);
-      nbRand2 = random.nextInt(nbDecoupage * nbDecoupage);
-
-      swapTiles2(nbRand1, nbRand2);
+      if (canSwitch(nbRand1)) {
+        swapTiles(nbRand1);
+        indexTileEmpty = nbRand1;
+      }
     }
-    indexTileEmpty = nbRand1;
+  }
+
+  void HardMelange() {
+    // fonction qui permet de mélanger aléatoirement des tuiles du jeu
+    createTiles();
+    int nbRand1 = 0;
+
+    for (int i = 0; i < nbDecoupage * nbDecoupage; i++) {
+      // on prend 2 nombres aléatoires qui correspondent aux indices de tuiles et on les échanges
+      nbRand1 = random.nextInt(nbDecoupage * nbDecoupage);
+      if (canSwitch(nbRand1)) {
+        swapTiles(nbRand1);
+        indexTileEmpty = nbRand1;
+      }
+    }
   }
 
   void Back() {
@@ -248,7 +265,7 @@ class Exercice7State extends State<Exercice7> {
                       // Si on appuie sur le bouton - on diminue le nombre de case
                       onPressed: () {
                         setState(() {
-                          if (nbDecoupage > 3) {
+                          if (nbDecoupage > 2) {
                             tiles.clear();
                             nbDecoupage--;
                           }
@@ -256,7 +273,7 @@ class Exercice7State extends State<Exercice7> {
                       },
                       label: const Text(''),
                       icon: Icon(Icons.remove),
-                      backgroundColor: Colors.red,
+                      backgroundColor: Colors.grey,
                     ))),
                   if (!isLaunch)
                     Expanded(
@@ -267,15 +284,34 @@ class Exercice7State extends State<Exercice7> {
                           isLaunch = true;
                           while (isEnd()) {
                             // Tant que le jeu n'est pas mélanger (évite les faux mélanges)
-                            Melange();
+                            HardMelange();
                           }
                           CompteurCoup = 0;
                           createTiles();
                         });
                       },
-                      label: const Text(''),
+                      label: const Text('Normal'),
                       icon: Icon(Icons.play_arrow),
                       backgroundColor: Colors.green,
+                    ))),
+                  if (!isLaunch)
+                    Expanded(
+                        child: Container(
+                            child: FloatingActionButton.extended(
+                      onPressed: () {
+                        setState(() {
+                          isLaunch = true;
+                          while (isEnd()) {
+                            // Tant que le jeu n'est pas mélanger (évite les faux mélanges)
+                            EasyMelange();
+                          }
+                          CompteurCoup = 0;
+                          createTiles();
+                        });
+                      },
+                      label: const Text('Difficile'),
+                      icon: Icon(Icons.play_arrow),
+                      backgroundColor: Colors.deepOrange,
                     ))),
                   if (!isLaunch)
                     Expanded(
@@ -292,7 +328,7 @@ class Exercice7State extends State<Exercice7> {
                       },
                       label: const Text(''),
                       icon: Icon(Icons.add),
-                      backgroundColor: Colors.red,
+                      backgroundColor: Colors.grey,
                     ))),
                   if (isLaunch)
                     Container(
