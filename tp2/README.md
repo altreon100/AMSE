@@ -1,16 +1,20 @@
-# tp2
+# Jeu de Taquin
 
-A new Flutter project.
+Cette application propose une série de d'exercices ayant pour but de se rapprocher progressivement à un jeu de Taquin
 
-## Getting Started
+## Contenu
 
-This project is a starting point for a Flutter application.
+Le fichier [main](https://github.com/altreon100/AMSE/blob/master/tp2/lib/main.dart) gère le menu permettant d'accéder au différent niveau en relations avec les consignes données.
 
-A few resources to get you started if this is your first Flutter project:
+Ensuite, chaque autre fichier constitue un niveau du projet.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Le fichier [Exercice7](https://github.com/altreon100/AMSE/blob/master/tp2/lib/Exercice7.dart) constitue le niveau final permettant de jouer au jeu du Taquin. Pour le jeu, une image est prise au hasard sur internet. Le joueur peut sélectionner la difficulté et le nombre de divisions de l'images. Ensuite la partie commence, un compteur permet de suivre le nombre de coups réalisé par le joueur, et un retour en arrière est possible en cas d'erreur.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+## _Auteurs_
+
+Cette application a été dévelopée par :
+
+* **Hugo Vanhille** _alias_ [@hugovanhille](https://github.com/hugovanhille)
+* **Maxence Vandendorpe** _alias_ [@altreon100](https://github.com/altreon100)
